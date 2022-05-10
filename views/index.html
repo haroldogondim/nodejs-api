@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <title>Dados de partida</title>
+    <style>
+        .table-players thead tr th:nth-child(1), .table-score thead tr th:nth-child(1) {
+            border-left: 2px solid #000;
+        }
+        .table-players thead tr th:nth-child(2n), .table-score thead tr th:nth-child(1n) {
+            border-right: 2px solid #000;
+        }
+
+        .table-players tbody td, .table-score tbody td, .table-players thead th, .table-score thead th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <% if ( typeof(locals.matchId) !== undefined ) { %>
+            <div class="col-md-12 d-flex justify-content-center mt-2 mb-3">
+                <a href="/match/download/<%= matchId %>"><button class="btn btn-warning">Download .xlsx</button></a>
+                <a href="/match/download/<%= matchId %>/?drive=true"><button class="btn btn-info ml-2">Download .xlsx e Google Drive</button></a>
+            </div>
+            <% } %>
+        </div>
+        <div class="row">
+            <% Object.values(teamsScore).forEach(function(value, index) { %>
+            <div class="col-md-12 align-center justify-content-center text-center"><h4><%= value[0][1] %></h4></div> 
+            <table class="table table-score">
+                <thead>
+                  <tr>
+                    <th scope="col">Team Name</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Kill Score</th>
+                    <th scope="col">Rank Score</th>
+                    <th scope="col">Total Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= value[0][1] %></td>
+                    <td><%= value[1][1] %></td>
+                    <td><%= value[2][1] %></td>
+                    <td><%= value[3][1] %></td>
+                    <td><%= value[4][1] %></td>
+                  </tr>
+                </tbody>
+            </table>
+            
+            <table class="table table-players" style="margin-bottom: 5rem;">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Kills</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Kills</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Kills</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Kills</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><%= value[5][1] %></td>
+                        <td><%= value[7][1] %> kills</td>
+                        <td><%= value[8][1] %></td>
+                        <td><%= value[10][1] %> kills</td>
+                        <td><%= value[11][1] %></td>
+                        <td><%= value[13][1] %> kills</td>
+                        <td><%= value[14][1] %></td>
+                        <td><%= value[16][1] %> kills</td>
+                    </tr>
+                    </tbody>
+            </table>
+            <hr class="my-4">
+            <% }); %>
+        </div>
+        
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function downloadFile() {
+    
+}
+</script>
+</html>
